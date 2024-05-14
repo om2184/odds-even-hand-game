@@ -7,10 +7,12 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Game {
 
   private int roundNumber = 1;
+  private String playerName;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     // the first element of options[0]; is the name of the player
-    MessageCli.WELCOME_PLAYER.printMessage(options[0]);
+    this.playerName = options[0];
+    MessageCli.WELCOME_PLAYER.printMessage(playerName);
   }
 
   public void play() {
@@ -25,6 +27,8 @@ public class Game {
       MessageCli.INVALID_INPUT.printMessage();
       input = Utils.scanner.nextLine();
     }
+
+    MessageCli.PRINT_INFO_HAND.printMessage(playerName, input);
   }
 
   public void endGame() {}
