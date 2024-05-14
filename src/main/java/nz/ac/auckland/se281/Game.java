@@ -10,6 +10,7 @@ public class Game {
 
   private int roundNumber;
   private String playerName;
+  private Choice playerChoice;
   private Ai ai;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
@@ -17,6 +18,7 @@ public class Game {
     this.playerName = options[0];
     this.roundNumber = 1;
     this.ai = new Ai(difficulty);
+    this.playerChoice = choice;
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
   }
 
@@ -36,9 +38,28 @@ public class Game {
 
     int playerNumber = Integer.parseInt(playerInput);
     int aiNumber = ai.play();
+    int sum = playerNumber + aiNumber;
 
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, playerInput);
     MessageCli.PRINT_INFO_HAND.printMessage(ai.getAiName(), String.valueOf(aiNumber));
+
+    getResults(sum);
+  }
+
+  private void getResults(int sum) {
+    if (Utils.isEven(sum)) {
+      if (playerChoice.equals(Choice.EVEN)) {
+        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", playerName);
+      } else {
+        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "OOD", ai.getAiName());
+      }
+    } else if (Utils.isOdd(sum)) {
+      if (playerChoice.equals(Choice.ODD)) {
+        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "ODD", playerName);
+      } else {
+        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", ai.getAiName());
+      }
+    }
   }
 
   public void endGame() {}
