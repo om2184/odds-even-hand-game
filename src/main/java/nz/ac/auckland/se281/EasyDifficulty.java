@@ -1,8 +1,5 @@
 package nz.ac.auckland.se281;
 
-import nz.ac.RandomStrategy;
-import nz.ac.Strategy;
-
 public class EasyDifficulty implements DifficultyLevel {
 
   private Strategy strategy;
@@ -12,7 +9,7 @@ public class EasyDifficulty implements DifficultyLevel {
   }
 
   @Override
-  public int getNumber() {
-    return strategy.aiNumber();
+  public int aiNumber() {
+    return this.strategy.aiNumber();
   }
 }

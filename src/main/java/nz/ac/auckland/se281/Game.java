@@ -16,6 +16,7 @@ public class Game {
     // the first element of options[0]; is the name of the player
     this.playerName = options[0];
     this.roundNumber = 1;
+    this.ai = new Ai(difficulty);
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
   }
 
@@ -34,9 +35,10 @@ public class Game {
     }
 
     int playerNumber = Integer.parseInt(playerInput);
-    int aiNumber = 0;
+    int aiNumber = ai.play();
 
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, playerInput);
+    MessageCli.PRINT_INFO_HAND.printMessage(ai.getAiName(), String.valueOf(aiNumber));
   }
 
   public void endGame() {}
