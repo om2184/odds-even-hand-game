@@ -47,19 +47,34 @@ public class Game {
   }
 
   private void getResults(int sum) {
-    if (Utils.isEven(sum)) {
-      if (playerChoice.equals(Choice.EVEN)) {
+
+    if (playerChoice.equals(Choice.EVEN)) {
+      if (Utils.isEven(sum)) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", playerName);
       } else {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "OOD", ai.getAiName());
       }
-    } else if (Utils.isOdd(sum)) {
-      if (playerChoice.equals(Choice.ODD)) {
+    } else if (playerChoice.equals(Choice.ODD)) {
+      if (Utils.isOdd(sum)) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "ODD", playerName);
       } else {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", ai.getAiName());
       }
     }
+
+    // if (Utils.isEven(sum)) {
+    //   if (playerChoice.equals(Choice.EVEN)) {
+    //     MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", playerName);
+    //   } else {
+    //     MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "OOD", ai.getAiName());
+    //   }
+    // } else if (Utils.isOdd(sum)) {
+    //   if (playerChoice.equals(Choice.ODD)) {
+    //     MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "ODD", playerName);
+    //   } else {
+    //     MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", ai.getAiName());
+    //   }
+    // }
   }
 
   public void endGame() {}
