@@ -1,6 +1,6 @@
-package nz.ac;
+package nz.ac.auckland.se281;
 
 public interface Strategy {
 
-  public void newGame();
+  public void aiNumber();
 }

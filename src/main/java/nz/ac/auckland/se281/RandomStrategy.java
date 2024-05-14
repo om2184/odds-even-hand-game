@@ -1,6 +1,4 @@
-package nz.ac;
-
-import nz.ac.auckland.se281.Utils;
+package nz.ac.auckland.se281;
 
 public class RandomStrategy implements Strategy {
 
