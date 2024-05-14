@@ -3,7 +3,7 @@ package nz.ac.auckland.se281;
 import nz.ac.RandomStrategy;
 import nz.ac.Strategy;
 
-public class EasyDifficulty implements Difficulty {
+public class EasyDifficulty implements DifficultyLevel {
 
   private Strategy strategy;
 
