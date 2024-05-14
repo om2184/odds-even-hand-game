@@ -16,6 +16,15 @@ public class Game {
   public void play() {
     MessageCli.START_ROUND.printMessage(String.valueOf(roundNumber));
     roundNumber++;
+
+    MessageCli.ASK_INPUT.printMessage();
+    String input = Utils.scanner.nextLine();
+
+    // Keep checking if the input is one integer between 0 and 5 until it is
+    while (!input.matches("[0-5]")) {
+      MessageCli.INVALID_INPUT.printMessage();
+      input = Utils.scanner.nextLine();
+    }
   }
 
   public void endGame() {}
