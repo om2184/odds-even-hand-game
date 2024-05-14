@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public interface Difficulty {
+public interface Difficultylevel {
 
   public int getNumber();
 }
