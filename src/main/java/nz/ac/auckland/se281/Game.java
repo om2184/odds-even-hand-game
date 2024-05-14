@@ -3,12 +3,14 @@ package nz.ac.auckland.se281;
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
+// Import the Ai class
+
 /** This class represents the Game is the main entry point. */
 public class Game {
 
   private int roundNumber;
-  ;
   private String playerName;
+  private Ai ai;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     // the first element of options[0]; is the name of the player
@@ -18,19 +20,23 @@ public class Game {
   }
 
   public void play() {
+
     MessageCli.START_ROUND.printMessage(String.valueOf(roundNumber));
     roundNumber++;
 
     MessageCli.ASK_INPUT.printMessage();
-    String input = Utils.scanner.nextLine();
+    String playerInput = Utils.scanner.nextLine();
 
     // Keep checking if the input is one integer between 0 and 5 until it is
-    while (!input.matches("[0-5]")) {
+    while (!playerInput.matches("[0-5]")) {
       MessageCli.INVALID_INPUT.printMessage();
-      input = Utils.scanner.nextLine();
+      playerInput = Utils.scanner.nextLine();
     }
 
-    MessageCli.PRINT_INFO_HAND.printMessage(playerName, input);
+    int playerNumber = Integer.parseInt(playerInput);
+    int aiNumber = 0;
+
+    MessageCli.PRINT_INFO_HAND.printMessage(playerName, playerInput);
   }
 
   public void endGame() {}
