@@ -19,6 +19,18 @@ public class HardDifficulty implements AiDifficulty {
 
   @Override
   public int strategyUsed(int roundNumber, List<Integer> playerHistory, int previousRound) {
-    return 0;
+    if (roundNumber < 4) {
+      return this.strategy.aiFinger();
+    } else if (previousRound == 0) {
+      if (this.strategy instanceof RandomStrategy) {
+        this.setStrategy(new TopStrategy(playerHistory, choice));
+        return this.strategy.aiFinger();
+      } else {
+        this.setStrategy(new RandomStrategy());
+        return this.strategy.aiFinger();
+      }
+    } else {
+      return this.strategy.aiFinger();
+    }
   }
 }
