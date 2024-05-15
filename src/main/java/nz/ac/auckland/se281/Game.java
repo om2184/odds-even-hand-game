@@ -1,5 +1,7 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+import java.util.List;
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
@@ -12,15 +14,16 @@ public class Game {
   private String playerName;
   private Choice playerChoice;
   private AiDifficulty ai;
-  // private List<Integer> playerHistory;
+  private List<Integer> playerHistory;
   private String aiName = "HAL-9000";
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
 
     this.playerName = options[0];
     this.roundNumber = 1;
-    this.ai = Ai.createAi(difficulty);
+    this.ai = AiFactory.createAi(difficulty, choice);
     this.playerChoice = choice;
+    this.playerHistory = new ArrayList<>();
 
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
   }
@@ -28,7 +31,6 @@ public class Game {
   public void play() {
 
     MessageCli.START_ROUND.printMessage(String.valueOf(roundNumber));
-    roundNumber++;
 
     MessageCli.ASK_INPUT.printMessage();
     String playerInput = Utils.scanner.nextLine();
@@ -40,13 +42,16 @@ public class Game {
     }
 
     int playerNumber = Integer.parseInt(playerInput);
-    int aiNumber = ai.aiNumber(roundNumber);
+    int aiNumber = ai.strategyUsed(roundNumber, playerHistory);
     int sum = playerNumber + aiNumber;
 
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, playerInput);
     MessageCli.PRINT_INFO_HAND.printMessage(aiName, String.valueOf(aiNumber));
 
     getResults(sum);
+
+    playerHistory.add(playerNumber);
+    roundNumber++;
   }
 
   private void getResults(int sum) {

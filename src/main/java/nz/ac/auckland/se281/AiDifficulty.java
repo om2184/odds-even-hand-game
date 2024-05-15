@@ -1,8 +1,10 @@
 package nz.ac.auckland.se281;
 
+import java.util.List;
+
 public interface AiDifficulty {
 
-  public int aiNumber(int roundNumber);
+  public int strategyUsed(int roundNumber, List<Integer> playerHistory);
 
   public Strategy setStrategy(Strategy strategy);
 }

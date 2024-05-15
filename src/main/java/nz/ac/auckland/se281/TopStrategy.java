@@ -1,16 +1,18 @@
 package nz.ac.auckland.se281;
 
-import java.util.ArrayList;
 import java.util.List;
+import nz.ac.auckland.se281.Main.Choice;
 
 public class TopStrategy implements Strategy {
 
-  private List<Integer> oddCounts;
-  private List<Integer> evenCounts;
+  private List<Integer> playerHistory;
+  private int odds;
+  private int evens;
+  private Choice choice;
 
-  public TopStrategy() {
-    this.oddCounts = new ArrayList<>();
-    this.evenCounts = new ArrayList<>();
+  public TopStrategy(List<Integer> playerHistory, Choice choice) {
+    this.playerHistory = playerHistory;
+    this.choice = choice;
   }
 
   @Override
@@ -18,38 +20,49 @@ public class TopStrategy implements Strategy {
     // Determine the most frequently chosen type of number (ODD or EVEN)
     int mostFrequentType = getMostFrequentType();
 
-    // Adapt AI's approach based on the most frequently chosen type
-    if (mostFrequentType == 1) {
-      // If odd numbers are more frequent, choose an even number
-      return Utils.getRandomEvenNumber();
-    } else if (mostFrequentType == 0) {
-      // If even numbers are more frequent, choose an odd number
-      return Utils.getRandomOddNumber();
+    if (choice == Choice.ODD) {
+      // Adapt AI's approach based on the most frequently chosen type
+      if (mostFrequentType == 1) {
+        // If odd numbers are more frequent, choose an even number
+        return Utils.getRandomEvenNumber();
+      } else if (mostFrequentType == 0) {
+        // If even numbers are more frequent, choose an odd number
+        return Utils.getRandomOddNumber();
+      } else {
+        // If both odd and even counts are equal or no data available, choose randomly
+        return Utils.getRandomNumberRange(0, 5);
+      }
     } else {
-      // If both odd and even counts are equal or no data available, choose randomly
-      return Utils.getRandomNumberRange(0, 5);
+      // Adapt AI's approach based on the most frequently chosen type
+      if (mostFrequentType == 1) {
+        // If odd numbers are more frequent, choose an odd number
+        return Utils.getRandomOddNumber();
+      } else if (mostFrequentType == 0) {
+        // If even numbers are more frequent, choose an even number
+        return Utils.getRandomEvenNumber();
+      } else {
+        // If both odd and even counts are equal or no data available, choose randomly
+        return Utils.getRandomNumberRange(0, 5);
+      }
     }
   }
 
   // Helper method to determine the most frequently chosen type of number
   private int getMostFrequentType() {
-
-    // Compare counts to determine the most frequent type
-    if (oddCounts.size() > evenCounts.size()) {
-      return 1; // ODD
-    } else if (evenCounts.size() > oddCounts.size()) {
-      return 0; // EVEN
-    } else {
-      return -1; // Equal counts or no data available
+    for (int number : playerHistory) {
+      if (Utils.isEven(number)) {
+        evens++;
+      } else {
+        odds++;
+      }
     }
-  }
 
-  // Method to update the counts based on the player's move
-  public void updateCounts(int fingers) {
-    if (fingers % 2 == 0) {
-      evenCounts.add(fingers);
+    if (evens > odds) {
+      return 1;
+    } else if (odds > evens) {
+      return 0;
     } else {
-      oddCounts.add(fingers);
+      return -1;
     }
   }
 }
