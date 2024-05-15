@@ -92,6 +92,13 @@ public class Game {
 
   public void endGame() {
     showStats();
+    if (playerWins > aiWins) {
+      MessageCli.PRINT_END_GAME.printMessage(playerName);
+    } else if (playerWins < aiWins) {
+      MessageCli.PRINT_END_GAME.printMessage(aiName);
+    } else {
+      MessageCli.PRINT_END_GAME_TIE.printMessage();
+    }
   }
 
   public void showStats() {}
