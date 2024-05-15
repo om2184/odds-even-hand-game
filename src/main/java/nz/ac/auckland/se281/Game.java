@@ -17,6 +17,7 @@ public class Game {
   private List<Integer> playerHistory;
   private String aiName = "HAL-9000";
   private int previousRoundAi;
+  private boolean gameRunning;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
 
@@ -25,11 +26,17 @@ public class Game {
     this.ai = AiFactory.createAi(difficulty, choice);
     this.playerChoice = choice;
     this.playerHistory = new ArrayList<>();
+    this.gameRunning = true;
 
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
   }
 
   public void play() {
+
+    if (!gameRunning) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
 
     MessageCli.START_ROUND.printMessage(String.valueOf(roundNumber));
 
