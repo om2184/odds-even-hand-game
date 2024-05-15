@@ -105,5 +105,23 @@ public class Game {
     gameRunning = false;
   }
 
-  public void showStats() {}
+  public void showStats() {
+    if (!gameRunning) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        playerName, String.valueOf(playerWins), String.valueOf(aiWins));
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        aiName, String.valueOf(aiWins), String.valueOf(playerWins));
+
+    if (playerWins > aiWins) {
+      MessageCli.PRINT_END_GAME.printMessage(playerName);
+    } else if (playerWins < aiWins) {
+      MessageCli.PRINT_END_GAME.printMessage(aiName);
+    } else {
+      MessageCli.PRINT_END_GAME_TIE.printMessage();
+    }
+  }
 }
