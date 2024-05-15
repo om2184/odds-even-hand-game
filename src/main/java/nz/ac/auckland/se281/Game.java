@@ -18,6 +18,8 @@ public class Game {
   private String aiName = "HAL-9000";
   private int previousRoundAi;
   private boolean gameRunning;
+  private int playerWins;
+  private int aiWins;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
 
@@ -66,17 +68,21 @@ public class Game {
     if (playerChoice.equals(Choice.EVEN)) {
       if (Utils.isEven(sum)) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", playerName);
+        playerWins++;
         return 0;
       } else {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "OOD", aiName);
+        aiWins++;
         return 1;
       }
     } else if (playerChoice.equals(Choice.ODD)) {
       if (Utils.isOdd(sum)) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "ODD", playerName);
+        playerWins++;
         return 0;
       } else {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", aiName);
+        aiWins++;
         return 1;
       }
     } else {
@@ -84,7 +90,9 @@ public class Game {
     }
   }
 
-  public void endGame() {}
+  public void endGame() {
+    showStats();
+  }
 
   public void showStats() {}
 }
