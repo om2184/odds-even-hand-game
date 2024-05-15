@@ -16,6 +16,7 @@ public class Game {
   private AiDifficulty ai;
   private List<Integer> playerHistory;
   private String aiName = "HAL-9000";
+  private int previousRoundAi;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
 
@@ -42,32 +43,37 @@ public class Game {
     }
 
     int playerNumber = Integer.parseInt(playerInput);
-    int aiNumber = ai.strategyUsed(roundNumber, playerHistory);
+    int aiNumber = ai.strategyUsed(roundNumber, playerHistory, previousRoundAi);
     int sum = playerNumber + aiNumber;
 
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, playerInput);
     MessageCli.PRINT_INFO_HAND.printMessage(aiName, String.valueOf(aiNumber));
 
-    getResults(sum);
-
+    previousRoundAi = getResults(sum);
     playerHistory.add(playerNumber);
     roundNumber++;
   }
 
-  private void getResults(int sum) {
+  private int getResults(int sum) {
 
     if (playerChoice.equals(Choice.EVEN)) {
       if (Utils.isEven(sum)) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", playerName);
+        return 0;
       } else {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "OOD", aiName);
+        return 1;
       }
     } else if (playerChoice.equals(Choice.ODD)) {
       if (Utils.isOdd(sum)) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "ODD", playerName);
+        return 0;
       } else {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", aiName);
+        return 1;
       }
+    } else {
+      return -1;
     }
   }
 

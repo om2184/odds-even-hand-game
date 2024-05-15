@@ -11,7 +11,7 @@ public class EasyDifficulty implements AiDifficulty {
   }
 
   @Override
-  public int strategyUsed(int roundNumber, List<Integer> playerHistory) {
+  public int strategyUsed(int roundNumber, List<Integer> playerHistory, int previousRound) {
     return this.strategy.aiFinger();
   }
 }

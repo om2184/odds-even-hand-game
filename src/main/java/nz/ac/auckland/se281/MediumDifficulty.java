@@ -18,7 +18,7 @@ public class MediumDifficulty implements AiDifficulty {
   }
 
   @Override
-  public int strategyUsed(int roundNumber, List<Integer> playerHistory) {
+  public int strategyUsed(int roundNumber, List<Integer> playerHistory, int previousRound) {
     if (roundNumber < 4) {
       return this.strategy.aiFinger();
     } else if (roundNumber == 4) {

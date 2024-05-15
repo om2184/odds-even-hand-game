@@ -14,6 +14,8 @@ public class AiFactory {
         return new EasyDifficulty();
       case MEDIUM:
         return new MediumDifficulty(choice);
+      case HARD:
+        return new HardDifficulty(choice);
       default:
         return null;
     }
