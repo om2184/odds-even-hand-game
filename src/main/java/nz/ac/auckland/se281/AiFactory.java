@@ -4,7 +4,13 @@ import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
 public class AiFactory {
-
+  /**
+   * Create an AI based on the difficulty and choice.
+   *
+   * @param difficulty what difficulty the player wants to play at
+   * @param choice player chose odd or even
+   * @return the Ai created based on the difficulty and choice
+   */
   public static AiDifficulty createAi(Difficulty difficulty, Choice choice) {
     switch (difficulty) {
       case EASY:
