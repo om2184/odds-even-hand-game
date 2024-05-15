@@ -7,9 +7,15 @@ public class Ai {
   protected String aiName = "HAL-9000";
   protected Strategy strategy;
 
-  public Ai(Difficulty difficulty) {
-    if (difficulty == Difficulty.EASY) {
-      this.strategy = new RandomStrategy();
+  public static DifficultyLevel createAi(Difficulty difficulty) {
+    switch (difficulty) {
+      case EASY:
+        return new EasyDifficulty();
+      case MEDIUM:
+        return new MediumDifficulty();
+      default:
+        return null;
+        ;
     }
   }
 
@@ -21,7 +27,7 @@ public class Ai {
     this.strategy = strategy;
   }
 
-  public int play() {
-    return strategy.aiNumber();
+  public int play(int roundNumber) {
+    return strategy.aiFinger();
   }
 }

@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281;
 
+import java.util.List;
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
@@ -11,14 +12,16 @@ public class Game {
   private int roundNumber;
   private String playerName;
   private Choice playerChoice;
-  private Ai ai;
+  private DifficultyLevel ai;
+  private List<Integer> playerHistory;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
-    // the first element of options[0]; is the name of the player
+
     this.playerName = options[0];
     this.roundNumber = 1;
-    this.ai = new Ai(difficulty);
+    this.ai = Ai.createAi(difficulty);
     this.playerChoice = choice;
+
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
   }
 
@@ -37,7 +40,7 @@ public class Game {
     }
 
     int playerNumber = Integer.parseInt(playerInput);
-    int aiNumber = ai.play();
+    int aiNumber = ai.play(roundNumber);
     int sum = playerNumber + aiNumber;
 
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, playerInput);
@@ -61,20 +64,6 @@ public class Game {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", ai.getAiName());
       }
     }
-
-    // if (Utils.isEven(sum)) {
-    //   if (playerChoice.equals(Choice.EVEN)) {
-    //     MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", playerName);
-    //   } else {
-    //     MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "OOD", ai.getAiName());
-    //   }
-    // } else if (Utils.isOdd(sum)) {
-    //   if (playerChoice.equals(Choice.ODD)) {
-    //     MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "ODD", playerName);
-    //   } else {
-    //     MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", ai.getAiName());
-    //   }
-    // }
   }
 
   public void endGame() {}

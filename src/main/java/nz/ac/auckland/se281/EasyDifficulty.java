@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class EasyDifficulty implements DifficultyLevel {
+public class EasyDifficulty implements AiDifficulty {
 
   private Strategy strategy;
 
@@ -9,7 +9,7 @@ public class EasyDifficulty implements DifficultyLevel {
   }
 
   @Override
-  public int aiNumber() {
-    return this.strategy.aiNumber();
+  public int aiNumber(int roundNumber) {
+    return this.strategy.aiFinger();
   }
 }
