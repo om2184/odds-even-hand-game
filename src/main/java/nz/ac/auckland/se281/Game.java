@@ -1,6 +1,5 @@
 package nz.ac.auckland.se281;
 
-import java.util.List;
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
@@ -12,8 +11,9 @@ public class Game {
   private int roundNumber;
   private String playerName;
   private Choice playerChoice;
-  private DifficultyLevel ai;
-  private List<Integer> playerHistory;
+  private AiDifficulty ai;
+  // private List<Integer> playerHistory;
+  private String aiName = "HAL-9000";
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
 
@@ -40,11 +40,11 @@ public class Game {
     }
 
     int playerNumber = Integer.parseInt(playerInput);
-    int aiNumber = ai.play(roundNumber);
+    int aiNumber = ai.aiNumber(roundNumber);
     int sum = playerNumber + aiNumber;
 
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, playerInput);
-    MessageCli.PRINT_INFO_HAND.printMessage(ai.getAiName(), String.valueOf(aiNumber));
+    MessageCli.PRINT_INFO_HAND.printMessage(aiName, String.valueOf(aiNumber));
 
     getResults(sum);
   }
@@ -55,13 +55,13 @@ public class Game {
       if (Utils.isEven(sum)) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", playerName);
       } else {
-        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "OOD", ai.getAiName());
+        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "OOD", aiName);
       }
     } else if (playerChoice.equals(Choice.ODD)) {
       if (Utils.isOdd(sum)) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "ODD", playerName);
       } else {
-        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", ai.getAiName());
+        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", aiName);
       }
     }
   }

@@ -8,7 +8,8 @@ public class MediumDifficulty implements AiDifficulty {
     this.strategy = new RandomStrategy();
   }
 
-  private Strategy setStrategy(Strategy strategy) {
+  @Override
+  public Strategy setStrategy(Strategy strategy) {
     return this.strategy = strategy;
   }
 
