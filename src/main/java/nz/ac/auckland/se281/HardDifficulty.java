@@ -33,4 +33,9 @@ public class HardDifficulty implements AiDifficulty {
       return this.strategy.aiFinger();
     }
   }
+
+  @Override
+  public String getAiName() {
+    return aiName;
+  }
 }

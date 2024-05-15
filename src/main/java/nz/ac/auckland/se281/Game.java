@@ -19,7 +19,6 @@ public class Game {
   private List<Integer> playerHistory;
   private Choice playerChoice;
   private AiDifficulty ai;
-  private String aiName = "HAL-9000";
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
 
@@ -59,7 +58,7 @@ public class Game {
     int sum = playerNumber + aiNumber;
 
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, playerInput);
-    MessageCli.PRINT_INFO_HAND.printMessage(aiName, String.valueOf(aiNumber));
+    MessageCli.PRINT_INFO_HAND.printMessage(ai.getAiName(), String.valueOf(aiNumber));
 
     previousRoundAi = getResults(sum);
     playerHistory.add(playerNumber);
@@ -74,7 +73,7 @@ public class Game {
         playerWins++;
         return 0;
       } else {
-        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "ODD", aiName);
+        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "ODD", ai.getAiName());
         aiWins++;
         return 1;
       }
@@ -84,7 +83,7 @@ public class Game {
         playerWins++;
         return 0;
       } else {
-        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", aiName);
+        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "EVEN", ai.getAiName());
         aiWins++;
         return 1;
       }
@@ -98,7 +97,7 @@ public class Game {
     if (playerWins > aiWins) {
       MessageCli.PRINT_END_GAME.printMessage(playerName);
     } else if (playerWins < aiWins) {
-      MessageCli.PRINT_END_GAME.printMessage(aiName);
+      MessageCli.PRINT_END_GAME.printMessage(ai.getAiName());
     } else {
       MessageCli.PRINT_END_GAME_TIE.printMessage();
     }
@@ -114,6 +113,6 @@ public class Game {
     MessageCli.PRINT_PLAYER_WINS.printMessage(
         playerName, String.valueOf(playerWins), String.valueOf(aiWins));
     MessageCli.PRINT_PLAYER_WINS.printMessage(
-        aiName, String.valueOf(aiWins), String.valueOf(playerWins));
+        ai.getAiName(), String.valueOf(aiWins), String.valueOf(playerWins));
   }
 }

@@ -14,4 +14,9 @@ public class EasyDifficulty implements AiDifficulty {
   public int strategyUsed(int roundNumber, List<Integer> playerHistory, int previousRound) {
     return this.strategy.aiFinger();
   }
+
+  @Override
+  public String getAiName() {
+    return aiName;
+  }
 }
