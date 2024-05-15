@@ -10,25 +10,28 @@ import nz.ac.auckland.se281.Main.Difficulty;
 /** This class represents the Game is the main entry point. */
 public class Game {
 
-  private int roundNumber;
-  private String playerName;
-  private Choice playerChoice;
-  private AiDifficulty ai;
-  private List<Integer> playerHistory;
-  private String aiName = "HAL-9000";
-  private int previousRoundAi;
   private boolean gameRunning;
+  private int roundNumber;
+  private int previousRoundAi;
   private int playerWins;
   private int aiWins;
+  private String playerName;
+  private List<Integer> playerHistory;
+  private Choice playerChoice;
+  private AiDifficulty ai;
+  private String aiName = "HAL-9000";
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
 
+    this.gameRunning = true;
     this.playerName = options[0];
-    this.roundNumber = 1;
     this.ai = AiFactory.createAi(difficulty, choice);
     this.playerChoice = choice;
+    this.roundNumber = 1;
     this.playerHistory = new ArrayList<>();
-    this.gameRunning = true;
+    this.playerWins = 0;
+    this.aiWins = 0;
+    this.previousRoundAi = -1;
 
     MessageCli.WELCOME_PLAYER.printMessage(playerName);
   }
@@ -99,6 +102,7 @@ public class Game {
     } else {
       MessageCli.PRINT_END_GAME_TIE.printMessage();
     }
+    gameRunning = false;
   }
 
   public void showStats() {}
