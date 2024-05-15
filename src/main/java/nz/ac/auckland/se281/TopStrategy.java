@@ -6,8 +6,6 @@ import nz.ac.auckland.se281.Main.Choice;
 public class TopStrategy implements Strategy {
 
   private List<Integer> playerHistory;
-  private int odds;
-  private int evens;
   private Choice choice;
 
   public TopStrategy(List<Integer> playerHistory, Choice choice) {
@@ -49,6 +47,8 @@ public class TopStrategy implements Strategy {
 
   // Helper method to determine the most frequently chosen type of number
   private int getMostFrequentType() {
+    int evens = 0;
+    int odds = 0;
     for (int number : playerHistory) {
       if (Utils.isEven(number)) {
         evens++;

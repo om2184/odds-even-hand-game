@@ -13,7 +13,6 @@ public class MediumDifficulty implements AiDifficulty {
     this.choice = choice;
   }
 
-  @Override
   public Strategy setStrategy(Strategy strategy) {
     return this.strategy = strategy;
   }
