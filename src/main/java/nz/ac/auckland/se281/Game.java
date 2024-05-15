@@ -74,7 +74,7 @@ public class Game {
         playerWins++;
         return 0;
       } else {
-        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "OOD", aiName);
+        MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), "ODD", aiName);
         aiWins++;
         return 1;
       }
@@ -115,13 +115,5 @@ public class Game {
         playerName, String.valueOf(playerWins), String.valueOf(aiWins));
     MessageCli.PRINT_PLAYER_WINS.printMessage(
         aiName, String.valueOf(aiWins), String.valueOf(playerWins));
-
-    if (playerWins > aiWins) {
-      MessageCli.PRINT_END_GAME.printMessage(playerName);
-    } else if (playerWins < aiWins) {
-      MessageCli.PRINT_END_GAME.printMessage(aiName);
-    } else {
-      MessageCli.PRINT_END_GAME_TIE.printMessage();
-    }
   }
 }
