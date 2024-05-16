@@ -3,6 +3,10 @@ package nz.ac.auckland.se281;
 import java.util.List;
 import nz.ac.auckland.se281.Main.Choice;
 
+/**
+ * This class represents the TopStrategy. The TopStrategy is a strategy that adapts the AI's
+ * approach based on the most frequently chosen type of number (ODD or EVEN) by the player.
+ */
 public class TopStrategy implements Strategy {
 
   private List<Integer> playerHistory;

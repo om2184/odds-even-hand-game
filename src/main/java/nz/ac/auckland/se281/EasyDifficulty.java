@@ -2,6 +2,10 @@ package nz.ac.auckland.se281;
 
 import java.util.List;
 
+/**
+ * This class represents the EasyDifficulty which is a difficulty that uses a random strategy for
+ * all rounds.
+ */
 public class EasyDifficulty implements AiDifficulty {
 
   private Strategy strategy;

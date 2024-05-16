@@ -3,6 +3,10 @@ package nz.ac.auckland.se281;
 import java.util.List;
 import nz.ac.auckland.se281.Main.Choice;
 
+/**
+ * This class represents the MediumDifficulty which is a difficulty that uses a random strategy for
+ * the first 3 rounds and then changes to a top strategy for the rest of the rounds.
+ */
 public class MediumDifficulty implements AiDifficulty {
 
   private Strategy strategy;

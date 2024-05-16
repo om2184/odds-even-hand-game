@@ -3,6 +3,10 @@ package nz.ac.auckland.se281;
 import java.util.List;
 import nz.ac.auckland.se281.Main.Choice;
 
+/**
+ * This class represents the HardDifficulty which is a difficulty that uses a random strategy for
+ * the first 3 rounds and then changes strategy based on the previous round result.
+ */
 public class HardDifficulty implements AiDifficulty {
 
   private Strategy strategy;
