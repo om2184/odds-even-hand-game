@@ -83,7 +83,7 @@ public class Game {
 
   /**
    * Helper method that determines the winner of the round based on the sum of the two numbers and
-   * the player's choice
+   * the player's choice.
    *
    * @param sum The sum of the two numbers played
    * @return 0 if the player wins, 1 if the AI wins, -1 if the sum is invalid
