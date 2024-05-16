@@ -18,8 +18,8 @@ public class TopStrategy implements Strategy {
     // Determine the most frequently chosen type of number (ODD or EVEN)
     int mostFrequentType = getMostFrequentType();
 
+    // Adapt AI's approach based on the most frequently chosen type
     if (choice == Choice.ODD) {
-      // Adapt AI's approach based on the most frequently chosen type
       if (mostFrequentType == 1) {
         // If odd numbers are more frequent, choose an even number
         return Utils.getRandomEvenNumber();
@@ -31,7 +31,6 @@ public class TopStrategy implements Strategy {
         return Utils.getRandomNumberRange(0, 5);
       }
     } else {
-      // Adapt AI's approach based on the most frequently chosen type
       if (mostFrequentType == 1) {
         // If odd numbers are more frequent, choose an odd number
         return Utils.getRandomOddNumber();
@@ -45,10 +44,17 @@ public class TopStrategy implements Strategy {
     }
   }
 
-  // Helper method to determine the most frequently chosen type of number
+  /**
+   * Helper method to determine the most frequently chosen type of number
+   *
+   * @return 1 if even numbers are more frequent, 0 if odd numbers are more frequent, -1 if both are
+   *     equal
+   */
   private int getMostFrequentType() {
     int evens = 0;
     int odds = 0;
+
+    // Count the number of even and odd numbers in the player's history
     for (int number : playerHistory) {
       if (Utils.isEven(number)) {
         evens++;

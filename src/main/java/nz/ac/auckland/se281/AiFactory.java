@@ -4,6 +4,7 @@ import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
 public class AiFactory {
+
   /**
    * Create an AI based on the difficulty and choice.
    *

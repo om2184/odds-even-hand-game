@@ -6,6 +6,7 @@ public class EasyDifficulty implements AiDifficulty {
 
   private Strategy strategy;
 
+  /** Easy difficulty only uses random strategy so strategy is set to random strategy. */
   public EasyDifficulty() {
     this.strategy = new RandomStrategy();
   }
