@@ -49,7 +49,7 @@ public class TopStrategy implements Strategy {
   }
 
   /**
-   * Helper method to determine the most frequently chosen type of number
+   * Helper method to determine the most frequently chosen type of number.
    *
    * @return 1 if even numbers are more frequent, 0 if odd numbers are more frequent, -1 if both are
    *     equal.
